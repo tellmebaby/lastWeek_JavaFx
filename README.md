@@ -1,2 +1,43 @@
 # lastWeek_JavaFx
 JavaFX연습
+
+0. DB 구축
+    - ORACLE 설치
+    - 계정 생성
+    - 테이블 생성 (board)
+    ```
+    CREATE TABLE BOARD(
+    TITLE VARCHAR2(100) NOT NULL,
+    WRITER VARCHAR2(50) NOT NULL,
+    NO NUMBER NOT NULL,
+    CONTENT VARCHAR2(1000),
+    UPD_DATE DATE DEFAULT SYSDATE
+    ,
+    REG_DATE DATE DEFAULT SYSDATE,
+    PRIMARY KEY(NO),
+    CONSTRAINT SYS_C007625 CHECK ("TITLE" IS NOT NULL),
+    CONSTRAINT SYS_C007626 CHECK ("WRITER" IS NOT NULL)
+    );
+    ```
+1. JavaFX 프로젝트 생성
+2. pom.xml - ojdbc 의존성 추가
+```
+<!-- ojdbc driver -->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>21.5</version>
+            <scope>system</scope>
+            <systemPath>C:\JOEUN\JAVA\lib\ojdbc8.jar</systemPath>
+        </dependency>
+```
+3. module-info.java 에 java.sql 모듈 추가
+```
+     requires java.sql;
+
+```
+4. JDBC 연동 - JDBConnection.java
+5. 게시판 프로그램의 Model 재사용 ( DAO, DTO, Service )
+6. View (fxml)
+    - 게시글 목록 : TableView
+7. Controller
